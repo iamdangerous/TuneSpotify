@@ -10,17 +10,17 @@
 
     <com.example.tunespotify.views.BaseButton
             android:text="Login"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/btnLogin"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.example.tunespotify.views.BaseButton
             android:id="@+id/btnPlay"
             android:text="Play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.example.tunespotify.views.BaseButton
             android:id="@+id/btnLogout"
             android:text="Logout"
             android:layout_width="wrap_content"

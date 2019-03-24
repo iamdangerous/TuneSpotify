@@ -1,11 +1,15 @@
 package com.example.tunespotify.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.example.tunespotify.R
+import com.example.tunespotify.manager.LoginActivityResult
+import com.example.tunespotify.manager.LoginManager
 import com.example.tunespotify.presenter.MainActivityPresenter
 import com.example.tunespotify.util.Creds
 import com.spotify.android.appremote.api.ConnectionParams
+
 
 class MainActivity : BaseActivity() {
 
@@ -25,7 +29,15 @@ class MainActivity : BaseActivity() {
     }
 
     fun initVars() {
-        presenter = MainActivityPresenter()
+        presenter = MainActivityPresenter(object : MainActivityPresenter.MainActivityPresenterCallback {
+            override fun onUserNotLoggedIn() {
+                openLoginUI()
+            }
+
+            override fun onUserConnected() {
+            }
+
+        })
 
         btnLogin = findViewById(R.id.btnLogin)
         btnPlay = findViewById(R.id.btnPlay)
@@ -53,7 +65,6 @@ class MainActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        prepareConnectionAndConnect()
     }
 
     fun prepareConnectionAndConnect() {
@@ -64,5 +75,16 @@ class MainActivity : BaseActivity() {
                 presenter.connectSpotify(this, it)
             }
         }
+    }
+
+    fun openLoginUI() {
+        val loginManager = LoginManager()
+        loginManager.openLoginActivity(this)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val loginActivityResult = LoginActivityResult()
+        loginActivityResult.handleResult(requestCode, resultCode, data)
     }
 }

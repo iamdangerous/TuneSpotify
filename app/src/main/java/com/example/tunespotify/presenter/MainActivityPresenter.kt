@@ -7,9 +7,10 @@ import com.example.tunespotify.util.Creds.SPOTIFY_REMOTE
 import com.spotify.android.appremote.api.ConnectionParams
 import com.spotify.android.appremote.api.Connector.ConnectionListener
 import com.spotify.android.appremote.api.SpotifyAppRemote
+import com.spotify.android.appremote.api.error.NotLoggedInException
 
 
-class MainActivityPresenter {
+class MainActivityPresenter(val callback: MainActivityPresenterCallback) {
 
     val TAG = "MainActPresenter"
     fun prepareConnection(): ConnectionParams {
@@ -25,11 +26,15 @@ class MainActivityPresenter {
         SpotifyAppRemote.connect(context, connectionParams, object : ConnectionListener {
             override fun onFailure(p0: Throwable?) {
                 Log.d(TAG, "fail: ${p0?.message}")
+                if (p0 is NotLoggedInException) {
+                    callback.onUserNotLoggedIn()
+                }
             }
 
             override fun onConnected(p0: SpotifyAppRemote?) {
                 SPOTIFY_REMOTE = p0
                 Log.d(TAG, "onConnected")
+                callback.onUserConnected()
             }
 
         })
@@ -49,5 +54,10 @@ class MainActivityPresenter {
                 Log.d(TAG, track.name + " by " + track.artist.name);
             }
         }
+    }
+
+    interface MainActivityPresenterCallback {
+        fun onUserNotLoggedIn()
+        fun onUserConnected()
     }
 }
