@@ -4,6 +4,13 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
-class BaseTextView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : AppCompatTextView(context, attrs, defStyleAttr)
+class BaseTextView : AppCompatTextView {
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    }
+
+    constructor(context: Context?) : super(context) {
+    }
+}
