@@ -20,6 +20,7 @@ class TimelineActivity : BaseActivity() {
     private fun initVars() {
         val adapter = TimelineFragmentAdapter(supportFragmentManager, presenter.getFragments())
         view_pager.adapter = adapter
+
     }
 
 }
