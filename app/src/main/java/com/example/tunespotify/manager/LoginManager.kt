@@ -22,7 +22,11 @@ class LoginManager {
 
     private fun getAuthRequest(): AuthenticationRequest {
         val builder = AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI)
-        builder.setScopes(arrayOf("streaming"))
+
+        val array = arrayOfNulls<String>(Creds.scopesList.size)
+        Creds.scopesList.toArray(array)
+        builder.setScopes(array)
+
         return builder.build()
     }
 }

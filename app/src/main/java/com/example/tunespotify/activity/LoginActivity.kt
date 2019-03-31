@@ -20,9 +20,11 @@ class LoginActivity : BaseActivity() {
     lateinit var btnPlay: View
     lateinit var btnLogout: View
 
+    private fun getLayout() = R.layout.activity_main
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(getLayout())
 
         initVars()
         setClicks()
@@ -61,10 +63,6 @@ class LoginActivity : BaseActivity() {
                 presenter.logoutSpotify(it)
             }
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     fun prepareConnectionAndConnect() {

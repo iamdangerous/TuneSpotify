@@ -18,7 +18,6 @@ class OnboardingActivity : BaseActivity() {
         if (isLoggedIn) {
             //Do nothing
         } else {
-
             dest = LoginActivity::class.java
         }
         startActivity(Intent(this, dest))
