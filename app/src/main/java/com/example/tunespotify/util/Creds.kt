@@ -7,5 +7,6 @@ object Creds {
     val SPOTIFY_REDIRECT_URI = "https://www.reddit.com"
     val SPOTIFY_ACTIVITY_REQUEST_CODE = 1337
 
-    var SPOTIFY_REMOTE:SpotifyAppRemote? = null
+    var SPOTIFY_REMOTE: SpotifyAppRemote? = null
+
 }
