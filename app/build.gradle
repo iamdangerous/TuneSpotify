@@ -5,6 +5,20 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        debugConfig {
+            keyAlias 'key0'
+            keyPassword 'rahul12345'
+            storeFile file('/Users/rahullohra/AndroidStudioProjects/TuneSpotify/keyStore/debugKey.jks')
+            storePassword 'rahul12345'
+        }
+        releaseConfig {
+            keyAlias 'key0'
+            keyPassword 'rahul12345'
+            storeFile file('/Users/rahullohra/AndroidStudioProjects/TuneSpotify/keyStore/releaseKey.jks')
+            storePassword 'rahul12345'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.tunespotify"
@@ -18,13 +32,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+        debug {
+            signingConfig signingConfigs.debugConfig
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.core:core-ktx:1.1.0-alpha04'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
