@@ -39,12 +39,14 @@ android {
             signingConfig signingConfigs.debugConfig
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-
     def retrofitVersion = '2.5.0'
-
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
@@ -55,12 +57,10 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.spotify.android:auth:1.1.0'
-
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation 'com.squareup.okhttp3:okhttp:3.14.0'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-
 }
