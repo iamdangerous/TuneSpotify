@@ -8,6 +8,7 @@ import com.example.tunespotify.manager.LoginActivityResult
 import com.example.tunespotify.manager.LoginManager
 import com.example.tunespotify.presenter.MainActivityPresenter
 import com.example.tunespotify.util.Creds
+import com.example.tunespotify.util.ToastUtil
 import com.spotify.android.appremote.api.ConnectionParams
 
 
@@ -52,26 +53,28 @@ class LoginActivity : BaseActivity() {
         }
 
         btnPlay.setOnClickListener {
-            Creds.SPOTIFY_REMOTE?.let {
-                presenter.playDemoPlayList(it)
+            if (Creds.isSpotifyConnected) {
+                presenter.playDemoPlayList(Creds.SPOTIFY_REMOTE!!)
             }
 
         }
 
         btnLogout.setOnClickListener {
-            Creds.SPOTIFY_REMOTE?.let {
-                presenter.logoutSpotify(it)
+            if (Creds.isSpotifyConnected) {
+                presenter.logoutSpotify(Creds.SPOTIFY_REMOTE!!)
             }
         }
     }
 
     fun prepareConnectionAndConnect() {
-        if (Creds.SPOTIFY_REMOTE == null) {
+        if (!Creds.isSpotifyConnected) {
             if (connectParams == null)
                 connectParams = presenter.prepareConnection()
             connectParams?.let {
                 presenter.connectSpotify(this, it)
             }
+        } else {
+            ToastUtil.show("User already connected")
         }
     }
 

@@ -25,6 +25,13 @@ object Creds {
 
     val scopesList = ArrayList<String>()
 
+    var isSpotifyConnected: Boolean = false
+        get() {
+            if (SPOTIFY_REMOTE == null)
+                return false
+            return (SPOTIFY_REMOTE!!.isConnected)
+        }
+
     init {
         scopesList.addAll(listeningHistoryScope)
         scopesList.addAll(libraryScope)

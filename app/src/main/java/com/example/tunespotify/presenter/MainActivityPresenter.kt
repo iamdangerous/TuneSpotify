@@ -41,7 +41,7 @@ class MainActivityPresenter(val callback: MainActivityPresenterCallback) {
     }
 
     fun logoutSpotify(appRemote: SpotifyAppRemote) {
-        SpotifyAppRemote.disconnect(appRemote);
+        SpotifyAppRemote.disconnect(appRemote)
     }
 
     fun playDemoPlayList(appRemote: SpotifyAppRemote) {
