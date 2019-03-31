@@ -11,7 +11,7 @@ import com.example.tunespotify.util.Creds
 import com.spotify.android.appremote.api.ConnectionParams
 
 
-class MainActivity : BaseActivity() {
+class LoginActivity : BaseActivity() {
 
     lateinit var presenter: MainActivityPresenter
     var connectParams: ConnectionParams? = null
